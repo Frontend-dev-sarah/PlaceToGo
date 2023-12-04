@@ -1,30 +1,30 @@
 export const categories = [
     {
-        name: 'Tiny homes',
-        icon: 'home',
-    },
-    {
-        name: 'Cabins',
+        name: 'Bungalow',
         icon: 'house-siding',
     },
     {
-        name: 'Trending',
+        name: 'House',
+        icon: 'nature-people',
+    },
+    {
+        name: 'Condominium',
         icon: 'local-fire-department',
     },
     {
-        name: 'Play',
+        name: 'Townhouse',
         icon: 'videogame-asset',
     },
     {
-        name: 'City',
+        name: 'Apartment',
         icon: 'apartment',
     },
     {
-        name: 'Beachfront',
+        name: 'Loft',
         icon: 'beach-access',
     },
     {
-        name: 'Countryside',
-        icon: 'nature-people',
+        name: 'Serviced apartment',
+        icon: 'home',
     },
 ];

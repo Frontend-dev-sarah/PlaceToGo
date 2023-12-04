@@ -1,5 +1,5 @@
 import { SafeAreaView, ScrollView, StyleSheet, Text, View, TouchableOpacity } from 'react-native'
-import React, { useContext, useRef, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import { Link } from 'expo-router'
 import Colors from '@/constants/Colors'
 import { Ionicons, MaterialIcons } from '@expo/vector-icons'
@@ -13,16 +13,20 @@ const ExploreHeader = () => {
     const categoryRef = useRef<Array<TouchableOpacity | null>>([]);
     const scrollRef = useRef<ScrollView | null>(null);
 
-    const { categoriedList } = useContext(ExploreContext);
+    const { selectCategoriedList } = useContext(ExploreContext);
 
-    const selectCategory = (categoryName: string, index: number) => {
+    useEffect(() => {
+        selectCategoriedList(categories[0].name);
+    }, [])
+
+    const selectCategory = (categoryName: string = categories[0].name, index: number) => {
         const selected = categoryRef.current[index];
         setActiveIndex(index);
         selected?.measure((x: number) => {
             scrollRef.current?.scrollTo({ x: x - 20, y: 0, animated: true })
-        })
+        });
         Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-        categoriedList(categoryName)
+        selectCategoriedList(categoryName);
     }
     return (
         <SafeAreaView style={{ flex: 1 }}>
