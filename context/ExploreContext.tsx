@@ -32,7 +32,7 @@ const ExploreProvider = ({ children }: ExploreProviderProps) => {
         return filteredList
     }
 
-    const listItem = (itemId: string) => listingData.find((item: ListingProps) => item.id === itemId)
+    const listItem = useMemo(() => (itemId: string) => listingData.find((item: ListingProps) => item.id === itemId), [])
 
     return (
         <ExploreContext.Provider value={{
