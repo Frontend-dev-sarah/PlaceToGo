@@ -99,7 +99,7 @@ function RootLayoutNav() {
           </TouchableOpacity>
         }} />
       <Stack.Screen name='listing/[id]'
-        options={{ title: "" }} />
+        options={{ headerTitle: "", headerTransparent: true }} />
       <Stack.Screen name='(modals)/booking'
         options={{
           presentation: 'transparentModal',

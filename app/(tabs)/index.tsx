@@ -2,17 +2,22 @@ import { View } from 'react-native'
 import React from 'react'
 import { Stack } from 'expo-router'
 import ExploreHeader from '@/components/explore/ExploreHeader'
-import Listing from '@/components/explore/ListingSection'
+import ListingMap from '@/components/explore/ListingMap'
+import ListingBottomSheet from '@/components/explore/ListingBottomSheet'
 
 const Explore = () => {
+
     return (
-        <View style={{ flex: 1, marginTop: 140 }}>
+        <View style={{ flex: 1, marginTop: 80 }}>
             <Stack.Screen
                 options={{
                     header: () => <ExploreHeader />
                 }}
             />
-            <Listing />
+
+            {/* <Listing /> */}
+            <ListingMap />
+            <ListingBottomSheet />
         </View>
     )
 }

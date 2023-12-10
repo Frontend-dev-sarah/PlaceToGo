@@ -1,6 +1,8 @@
 import React, { createContext, useMemo } from 'react'
 import listing from '@/assets/data/airbnb-listings.json'
+import listingMap from '@/assets/data/airbnb-listings.geo.json'
 import { ListingProps } from '@/interfaces/listing'
+import { ListingMapProps } from '@/interfaces/listingMap'
 
 type ExploreProviderProps = {
     children: React.ReactNode
@@ -9,7 +11,9 @@ type ExploreProviderProps = {
 type ExploreContextProps = {
     selectCategoriedList: (category: string) => void,
     listingData: ListingProps[],
-    categoriedList: ListingProps[]
+    categoriedList: ListingProps[],
+    listItem: (itemId: string) => ListingProps,
+    listingMapData: ListingMapProps[]
 }
 
 
@@ -18,6 +22,8 @@ export const ExploreContext = createContext<ExploreContextProps>({} as ExploreCo
 const ExploreProvider = ({ children }: ExploreProviderProps) => {
     const listingData = useMemo(() => listing as any, []);
 
+    const listingMapData = useMemo(() => listingMap.features as any, [])
+
     const [categoriedList, setCategoriedList] = React.useState<ListingProps[]>([]);
 
     const selectCategoriedList = (category: string) => {
@@ -25,11 +31,16 @@ const ExploreProvider = ({ children }: ExploreProviderProps) => {
         setCategoriedList(filteredList)
         return filteredList
     }
+
+    const listItem = (itemId: string) => listingData.find((item: ListingProps) => item.id === itemId)
+
     return (
         <ExploreContext.Provider value={{
             listingData,
             selectCategoriedList,
-            categoriedList
+            categoriedList,
+            listItem,
+            listingMapData
         }}>
             {children}
         </ExploreContext.Provider>
